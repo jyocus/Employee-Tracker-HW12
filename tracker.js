@@ -68,6 +68,7 @@ inquirer.prompt({
 }).then(answer => {
     connection.query("INSERT INTO department (dept_name) values (?)"), [answer.addDepartment], function(err, res){
         console.log(res);
+        start();
     }
 })
 }
@@ -94,6 +95,7 @@ inquirer.prompt([
 ]).then(answer => {
     connection.query("INSERT INTO emp_role (title, salary, department_ID) values (?,?,?)"), [answer.addDepartment], function(err, res){
         console.log(res);
+        start();
     }
 
 })
@@ -126,6 +128,7 @@ inquirer.prompt([
 ]).then(answer => {
     connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) values (?,?,?,?)"), [answer.addDepartment], function(err, res){
         console.log(res);
+        start();
     }
 
 })
