@@ -27,10 +27,10 @@ function start(){
      type: 'list',
      choices: ['Add Department', 'Add Role', 'Add Employee', 'View Department', 'View Role', 'View Employee', 'Update Employee Roles']
      
- }).then (response =>{
+ }).then (answer =>{
     //  console.log(response.startQuestions);
     // Instead of writing a bunch of if/else using a switch statement to lead the user to a different function based on what they want to do
-    switch (answers.startQuestions) {
+    switch (answer.startQuestions) {
         case 'Add Department':
             addDepartment()
             break;
@@ -55,6 +55,48 @@ function start(){
 
     }
  })
+}
+//Receiving Parse Error
+function addDepartment(){
+    console.log('working');
+inquirer.prompt({
+    name: 'addDepartment',
+    message:'What is the department you would like to add?',
+    type: 'input'
+
+//.then promise and mysql to add new department from user input to table
+}).then(answer => {
+    connection.query("INSERT INTO department (dept_name) values (?)"), [answer.addDepartment], function(err, res){
+        console.log(res);
+    }
+})
+}
+//Receiving Parse Error
+function addRole(){
+    console.log('working');
+inquirer.prompt([
+    {
+    name: 'roleTitle',
+    message:'What is the role you would like to add?',
+    type: 'input'
+    },
+    {
+    name: 'roleSalary',
+    message: 'What is the salary for this role?',
+    type: 'input'
+    },
+    {
+    name: 'deptID',
+    message: 'What is the department ID?',
+    type: 'input'
+    }
+//.then promise and mysql to add new role from user input to table
+]).then(answer => {
+    connection.query("INSERT INTO emp_role (title, salary, department_ID) values (?,?,?)"), [answer.addDepartment], function(err, res){
+        console.log(res);
+    }
+
+})
 }
 
   //Psuedo Code (Referencing the GreatBay class activity, mostly applicable here):
