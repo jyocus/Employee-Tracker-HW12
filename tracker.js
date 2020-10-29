@@ -98,10 +98,17 @@ inquirer.prompt([
     }
 //.then promise and mysql to add new role from user input to table
 ]).then(answer => {
-    connection.query("INSERT INTO emp_role (title, salary, department_ID) values (?,?,?)"), [answer.addDepartment], function(err, res){
+    connection.query("INSERT INTO emp_role SET ?",
+    {
+        title: answer.roleTitle,
+        salary: answer.roleSalary,
+        department_id: answer.deptID
+    },
+    function(err, res){
         console.log(res);
         start();
     }
+    );
 
 })
 }
@@ -131,10 +138,18 @@ inquirer.prompt([
     }
 //.then promise and mysql to add new employee from user input to table
 ]).then(answer => {
-    connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) values (?,?,?,?)"), [answer.addDepartment], function(err, res){
+    connection.query("INSERT INTO employee SET ?",
+    {
+        first_name: answer.firstName,
+        last_name: answer.lastName,
+        role_id: answer.roleID,
+        manager_id: answer.managerID
+    },
+    function(err, res){
         console.log(res);
         start();
     }
+    );
 
 })
 }
