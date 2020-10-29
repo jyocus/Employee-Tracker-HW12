@@ -17,12 +17,20 @@ var connection = mysql.createConnection({
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
     // run the start function after the connection is made to prompt the user
-    // start();
+    start();
   });
 
-// function start(){
-
-// }
+function start(){
+ inquirer.prompt({
+     name: 'startQuestions',
+     message: 'What would you like to do?',
+     type: 'list',
+     choices: ['Add Department', 'Add Role', 'Add Employee', 'View Department', 'View Role', 'View Employee', 'Update Employee Roles']
+     
+ }).then (response =>{
+     console.log(response.startQuestions);
+ })
+}
 
   //Psuedo Code (Referencing the GreatBay class activity, mostly applicable here):
 //   1. Create a file and create package.json with npm init -y
