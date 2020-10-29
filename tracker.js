@@ -56,7 +56,7 @@ function start(){
     }
  })
 }
-//Receiving Parse Error
+
 function addDepartment(){
     console.log('working');
 inquirer.prompt({
@@ -66,10 +66,15 @@ inquirer.prompt({
 
 //.then promise and mysql to add new department from user input to table
 }).then(answer => {
-    connection.query("INSERT INTO department (dept_name) values (?)"), [answer.addDepartment], function(err, res){
+    connection.query("INSERT INTO Department SET ?",
+    {
+        dept_name: answer.addDepartment
+    },
+    function(err, res){
         console.log(res);
         start();
     }
+    );
 })
 }
 //Receiving Parse Error
@@ -132,6 +137,27 @@ inquirer.prompt([
     }
 
 })
+}
+
+function viewDepartment(){
+    connection.query("SELECT * FROM Department"), function(err,res){
+        console.log(res);
+        start();
+    }
+}
+
+function viewRole(){
+    connection.query("SELECT * FROM emp_role"), function(err,res){
+        console.log(res);
+        start();
+    }
+}
+
+function viewEmployee(){
+    connection.query("SELECT * FROM employee"), function(err,res){
+        console.log(res);
+        start();
+    }
 }
 
 
