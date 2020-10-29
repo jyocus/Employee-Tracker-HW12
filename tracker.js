@@ -28,7 +28,32 @@ function start(){
      choices: ['Add Department', 'Add Role', 'Add Employee', 'View Department', 'View Role', 'View Employee', 'Update Employee Roles']
      
  }).then (response =>{
-     console.log(response.startQuestions);
+    //  console.log(response.startQuestions);
+    // Instead of writing a bunch of if/else using a switch statement to lead the user to a different function based on what they want to do
+    switch (answers.startQuestions) {
+        case 'Add Department':
+            addDepartment()
+            break;
+        case 'Add Role':
+            addRole()
+            break;
+        case 'Add Employee':
+            addEmployee()
+            break;
+        case 'View Department':
+            viewDepartment()
+            break;
+        case 'View Role':
+            viewRole()
+            break;
+        case 'View Employee':
+            viewEmployee()
+            break;
+        case 'Update Employee Roles':
+            updateRoles()
+            break;
+
+    }
  })
 }
 
