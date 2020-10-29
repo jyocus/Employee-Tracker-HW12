@@ -83,12 +83,12 @@ inquirer.prompt([
     {
     name: 'roleSalary',
     message: 'What is the salary for this role?',
-    type: 'input'
+    type: 'number'
     },
     {
     name: 'deptID',
     message: 'What is the department ID?',
-    type: 'input'
+    type: 'number'
     }
 //.then promise and mysql to add new role from user input to table
 ]).then(answer => {
@@ -98,6 +98,41 @@ inquirer.prompt([
 
 })
 }
+//Receiving Parse Error
+function addEmployee(){
+    console.log('working');
+inquirer.prompt([
+    {
+    name: 'firstName',
+    message:'What is the first name of the employee?',
+    type: 'input'
+    },
+    {
+    name: 'lastName',
+    message: 'What is the last name of the employee?',
+    type: 'input'
+    },
+    {
+    name: 'roleID',
+    message: 'What is the role ID?',
+    type: 'number'
+    },
+    {
+    name:'managerID',
+    message:'What is the Manager ID (you can leave blank if N/A)',
+    type:'number'
+    }
+//.then promise and mysql to add new employee from user input to table
+]).then(answer => {
+    connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) values (?,?,?,?)"), [answer.addDepartment], function(err, res){
+        console.log(res);
+    }
+
+})
+}
+
+
+
 
   //Psuedo Code (Referencing the GreatBay class activity, mostly applicable here):
 //   1. Create a file and create package.json with npm init -y
