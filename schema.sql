@@ -27,5 +27,8 @@ CREATE TABLE employee(
     PRIMARY KEY (id)
 );
 
-
+--Inserting Seeds--
+INSERT INTO employee (first_name, last_name, role_id, manager_id) values ('Justin', 'Yocus', '1', '1');
+INSERT INTO employee (first_name, last_name, role_id, manager_id) values ('Kyle', 'Kashius', '2', '3');
+INSERT INTO employee (first_name, last_name, role_id, manager_id) values ('Stefanie', 'Newmark', '3', '2');
 
