@@ -25,7 +25,7 @@ function start(){
      name: 'startQuestions',
      message: 'What would you like to do?',
      type: 'list',
-     choices: ['Add Department', 'Add Role', 'Add Employee', 'View Department', 'View Role', 'View Employee', 'Update Employee Roles']
+     choices: ['Add Department', 'Add Role', 'Add Employee', 'View Department', 'View Role', 'View Employee', 'Update Employee Roles', 'End Program']
      
  }).then (answer =>{
     //  console.log(response.startQuestions);
@@ -50,7 +50,10 @@ function start(){
             viewEmployee()
             break;
         case 'Update Employee Roles':
-            updateRoles()
+            updatEmpRoles()
+            break;
+        case 'End Program':
+            endProgram()
             break;
 
     }
@@ -173,6 +176,14 @@ function viewEmployee(){
         console.log(res);
         start();
     }
+}
+
+// function updatEmpRoles(){
+
+// }
+
+function endProgram(){
+    connection.end();
 }
 
 
