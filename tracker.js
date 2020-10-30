@@ -50,7 +50,7 @@ function start(){
             viewEmployee()
             break;
         case 'Update Employee Roles':
-            updatEmpRoles()
+            updateEmpRoles()
             break;
         case 'End Program':
             endProgram()
@@ -61,7 +61,7 @@ function start(){
 }
 
 function addDepartment(){
-    console.log('working');
+    // console.log('working');
 inquirer.prompt({
     name: 'addDepartment',
     message:'What is the department you would like to add?',
@@ -82,7 +82,7 @@ inquirer.prompt({
 }
 //Receiving Parse Error
 function addRole(){
-    console.log('working');
+    // console.log('working');
 inquirer.prompt([
     {
     name: 'roleTitle',
@@ -117,7 +117,7 @@ inquirer.prompt([
 }
 //Receiving Parse Error
 function addEmployee(){
-    console.log('working');
+    // console.log('working');
 inquirer.prompt([
     {
     name: 'firstName',
@@ -158,27 +158,38 @@ inquirer.prompt([
 }
 
 function viewDepartment(){
-    connection.query("SELECT * FROM Department"), function(err,res){
-        console.log(res);
+    connection.query("SELECT * FROM Department", function(err,res){
+        console.table(res);
         start();
-    }
+    })
 }
 
 function viewRole(){
-    connection.query("SELECT * FROM emp_role"), function(err,res){
-        console.log(res);
+    connection.query("SELECT * FROM emp_role", function(err,res){
+        console.table(res);
         start();
-    }
+    })
 }
-
+//to view all employees requires a join - Worked on this with tutor
 function viewEmployee(){
-    connection.query("SELECT * FROM employee"), function(err,res){
-        console.log(res);
+    let query = `SELECT  employee.id, employee.first_name, employee.last_name
+    , emp_role.title, emp_role.salary
+    , Department.dept_name
+       FROM employee 
+       LEFT JOIN emp_role 
+       ON (employee.role_id = emp_role.id) 
+       LEFT JOIN Department 
+       ON (emp_role.department_id = Department.id)`
+    connection.query(query, function(err,res){
+        if (err){
+            console.log(err);
+        }
+        console.table(res);
         start();
-    }
+    })
 }
 
-// function updatEmpRoles(){
+// function updateEmpRoles(){
 
 // }
 
